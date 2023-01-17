@@ -9,13 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MyWebSiteContext>(opt =>
-{
-    opt.UseMySQL(builder.Configuration.GetSection("ConnectionStrings:Default") , null)
-})
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+using var context = new MyWebSiteContext(builder.Configuration.GetSection("DbConnectionStrings").Value);
 
 var app = builder.Build();
 
@@ -26,6 +24,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+bool recreateDb = builder.Configuration.GetValue<bool>("recreatedDb");
+if (recreateDb)
+{
+    context.Database.EnsureDeletedAsync();
+    context.Database.EnsureCreatedAsync();
+}
+context.Database.MigrateAsync();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyNewWebSite.AccessLayer.Entity
 {
-    public class Users
+    public class User
     {
         [Key]
         public ulong Id { get; set; }

@@ -11,10 +11,16 @@ namespace MyNewWebSite.AccessLayer.DB
 {
     public class MyWebSiteContext : DbContext
     {
-        public DbSet<Users>? Users { get; set; }
+        private readonly string connectionString;
+
+        public MyWebSiteContext(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+        public DbSet<User>? Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost:3306;database=mynewwebsite;user=test;password=1qaz!QAZ");
+            optionsBuilder.UseMySQL(connectionString);
         }
     }
 }
