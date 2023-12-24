@@ -1,8 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using MyNewWebSite.AccessLayer.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<MyDatabaseContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+});
+
+builder.Services.AddAutoMapper(typeof(MyDatabaseProfile));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,5 +30,9 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<MyDatabaseContext>();
+await context.Database.MigrateAsync();
 
 app.Run();

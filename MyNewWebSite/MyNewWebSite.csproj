@@ -9,10 +9,21 @@
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Admin\" />
     <Folder Include="Controllers\Site\" />
+    <Folder Include="Controllers\Site\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNewWebSite.AccessLayer\MyNewWebSite.AccessLayer.csproj" />
+    <ProjectReference Include="..\MyNewWebSite.Core\MyNewWebSite.Core.csproj" />
   </ItemGroup>
 </Project>
