@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using MyNewWebSite.AccessLayer.Entity;
 
 namespace MyNewWebSite.Core.Classes
 {
@@ -16,7 +17,7 @@ namespace MyNewWebSite.Core.Classes
         {
             _config = config;
         }
-        private string GenerateJSONWebToken(UserModel userModel)
+        private string GenerateJSONWebToken(User userModel)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt").Value));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
