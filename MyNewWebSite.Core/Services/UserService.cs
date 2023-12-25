@@ -2,11 +2,8 @@
 using MyNewWebSite.AccessLayer.Entity;
 using MyNewWebSite.Core.CodeFactory;
 using MyNewWebSite.Core.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using static MyNewWebSite.Core.Classes.EnumClasses;
 
 namespace MyNewWebSite.Core.Services
 {

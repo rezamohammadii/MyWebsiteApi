@@ -9,5 +9,7 @@ namespace MyNewWebSite.Core.Interface
     public interface IUser
     {
         bool CheckCreateAdminUser();
-    }
+        bool CheckPermissionForUser(string username, int permissionId);
+    }   
+   
 }

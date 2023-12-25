@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<MyDatabaseContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+    opt.UseSqlite(builder.Configuration.GetConnectionString("connLite"));
 });
 
 builder.Services.AddAutoMapper(typeof(MyDatabaseProfile));

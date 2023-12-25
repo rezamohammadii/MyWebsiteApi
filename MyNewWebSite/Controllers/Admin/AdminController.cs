@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyNewWebSite.AccessLayer.Models;
+using MyNewWebSite.Core.Classes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,9 +25,18 @@ namespace MyNewWebSite.Controllers.Admin
         }
 
         // POST api/<AdminController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HasPermission(AllPermission.Full)]
+        [HttpPost("login")]
+        public void Post([FromBody] LoginModel model)
         {
+            if (ModelState.IsValid)
+            {
+                
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<AdminController>/5
