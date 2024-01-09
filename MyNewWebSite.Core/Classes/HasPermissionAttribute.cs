@@ -27,18 +27,18 @@ namespace MyNewWebSite.Core.Classes
             this.user = user;
         }
 
-        protected override void Handle(AuthorizationHandlerContext context, HasPermissionAttribute hasPermission)
-        {
-            if (context.User == null)
-            {
-                return;
-            }
-            var has_Permission = user.CheckPermissionForUser(context.User.Identity.Name, 1);
-            if (has_Permission)
-            {
-                context.Succeed(hasPermission);
-            }
-        }
+        //protected override void Handle(AuthorizationHandlerContext context, HasPermissionAttribute hasPermission)
+        //{
+        //    if (context.User == null)
+        //    {
+        //        return;
+        //    }
+        //    var has_Permission = user.CheckPermissionForUser(context.User.Identity.Name, 1);
+        //    if (has_Permission)
+        //    {
+        //        context.Succeed(hasPermission);
+        //    }
+        //}
     }
 
 }

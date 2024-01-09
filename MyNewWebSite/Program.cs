@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyNewWebSite.AccessLayer.Context;
+using MyNewWebSite.Core.Interface;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddDbContext<MyDatabaseContext>(opt =>
 });
 
 builder.Services.AddAutoMapper(typeof(MyDatabaseProfile));
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
